@@ -12,3 +12,7 @@ table, th, td {
     height: 65px;
     width: 150px;
 }
+
+.headerText{
+    font-family: sans-serif;
+}
