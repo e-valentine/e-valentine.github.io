@@ -2,3 +2,13 @@ table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
   }
+
+.buttons {
+    border-radius: 3px;
+    background-color: #7289da;
+    border:none;
+    font-weight: bold;
+    color: aliceblue;
+    height: 65px;
+    width: 150px;
+}
