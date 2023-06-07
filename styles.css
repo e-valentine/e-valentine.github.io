@@ -15,4 +15,9 @@ table, th, td {
 
 .headerText{
     font-family: sans-serif;
+    text-align: center;
+}
+
+a {
+    text-align: center;
 }
