@@ -28,8 +28,8 @@
                     let firstnum = document.getElementById("firstNum").innerText();
                     let secnum = document.getElementById("secNum").innerText();
                     let operator = document.getElementById("operator").innerText();
-                    parseFloat(firstnum);
-                    parseFloat(secnum);
+                    firstnum = parseFloat(firstnum);
+                    secnum = parseFloat(secnum);
                     if (operator=="*") {
                             let result = firstnum*secnum;
                     }
