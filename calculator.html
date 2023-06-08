@@ -12,14 +12,39 @@
             <select name="Operator" id="operator">
                 <option value="plus"selected>+</option>
                 <option value="minus">-</option>
-                <option value="times">X</option>
+                <option value="times">*</option>
                 <option value="divide">/</option>
             </select>
             <input type="number" id="secNum" name="secNum">
             <br/>
             <br/>
             <br/>
-            <button class="buttons">Calculate</button>
+            <button class="buttons" onclick="calculate()">Calculate</button>
+            <br/>
+            <br/>
+            <textarea id="resultbox"></textarea>
+            <script>
+                function calculate() {
+                    let firstnum = document.getElementById("firstNum").innerText();
+                    let secnum = document.getElementById("secNum").innerText();
+                    let operator = document.getElementById("operator").innerText();
+                    parseFloat(firstnum);
+                    parseFloat(secnum);
+                    if (operator=="*") {
+                            let result = firstnum*secnum;
+                    }
+                    else if (operator=="+") {
+                        let result = firstnum + secnum;
+                    }
+                    else if (operator=="-") {
+                        let result = firstnum - secnum;
+                    }
+                    else{
+                        let result = firstnum/secnum;
+                    }
+                    document.getElementById("resultbox").innerText = result
+                }
+            </script>
         </form>
     </body>
 
