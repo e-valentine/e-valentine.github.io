@@ -2,6 +2,57 @@
 <html>
     <head>
         <title>Calculator</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script>
+                function calculate() {
+                    event.stopPropagation();
+                    event.preventDefault();
+                    alert("hi");
+                    let firstNum = $("#firstNum").val()
+                    let secNum = $("#secNum").val()
+                    let operation = $("#operation").val()
+                    // alert(operation);
+                    // firstnum = parseFloat(firstnum);
+                    // secnum = parseFloat(secnum);
+                    // let result = 0
+                    // if (operation=="times") {
+                    //         result = firstnum*secnum;
+                    // }
+                    // else if (operation=="plus") {
+                    //     result = firstnum + secnum;
+                    // }
+                    // else if (operation=="minus") {
+                    //     result = firstnum - secnum;
+                    // }
+                    // else{
+                    //     result = firstnum/secnum;
+                    // }
+                    var inputs = {
+                        firstNum: firstNum,
+                        secNum:secNum,
+                        operation:operation
+                    }
+                    // $.post("https://calcfnapp.azurewebsites.net/api/HttpTrigger1?code=Muo1okovfaKnIG22lQe1eUDX8VdP5qxuAfmxJHiXUVXUAzFuJ1lnNw==",
+                    // JSON.stringify(inputs),
+                    // function(inputs)
+                    // {
+                    //     alert(input)
+                    // },
+                     function displayresult(result)
+                     {
+                         $("#resultbox").append(result);
+                     }
+                    $.ajax({
+                        type: "POST",
+                        url: "https://calcfnapp.azurewebsites.net/api/HttpTrigger1?code=Muo1okovfaKnIG22lQe1eUDX8VdP5qxuAfmxJHiXUVXUAzFuJ1lnNw==",
+                        data: JSON.stringify(inputs),
+                        success: function (results){
+                            displayresult(results)
+                        },
+                        contentType: "application/json; charset=utf-8"
+                        });
+                }
+            </script>
     </head>
     <body>
         <h1>Welcome to the Calculator</h1><b>
@@ -9,7 +60,7 @@
             <hr>
         <form>
             <input type="number" id="firstNum" name="firstNum">
-            <select name="Operator" id="operator">
+            <select name="operation" id="operation">
                 <option value="plus"selected>+</option>
                 <option value="minus">-</option>
                 <option value="times">*</option>
@@ -19,32 +70,11 @@
             <br/>
             <br/>
             <br/>
-            <button class="buttons" onclick="calculate()">Calculate</button>
+            <button class="buttons" onclick="calculate() ">Calculate</button>
             <br/>
             <br/>
             <textarea id="resultbox"></textarea>
-            <script>
-                function calculate() {
-                    let firstnum = document.getElementById("firstNum").innerText();
-                    let secnum = document.getElementById("secNum").innerText();
-                    let operator = document.getElementById("operator").innerText();
-                    firstnum = parseFloat(firstnum);
-                    secnum = parseFloat(secnum);
-                    if (operator=="*") {
-                            let result = firstnum*secnum;
-                    }
-                    else if (operator=="+") {
-                        let result = firstnum + secnum;
-                    }
-                    else if (operator=="-") {
-                        let result = firstnum - secnum;
-                    }
-                    else{
-                        let result = firstnum/secnum;
-                    }
-                    document.getElementById("resultbox").innerText = result
-                }
-            </script>
+            
         </form>
     </body>
 
