@@ -6,7 +6,7 @@
         <script>
             const numToGuess = getPrime(2,1001);
             const guesses = [];
-            const guessesRem = 6
+            var guessesRem = 6
             function rnd(min, max) {
                 return Math.floor(Math.random() * max) + min;
             }
@@ -28,16 +28,19 @@
                 event.preventDefault();              
                 let numberGuess = $("#numGuess").val();
                 guesses.push(numberGuess);
+                guessesRem = guessesRem-1
+                document.getElementById("remaining").innerHTML="Number of guesses remaining: "+guessesRem;
+                document.getElementById("showGuesses").innerHTML="Previous Guesses: "+guesses;
                 if (numberGuess==numToGuess){
-                    alert("This is the correct answer!");
-                    
+                    alert("This is the correct answer!");                  
                 } else if(isPrime(numberGuess)==false){
                     alert("that isnt a prime number!")
                 } else if(numberGuess>numToGuess){
                     alert("This number is too high!")
                 } else if(numberGuess<numToGuess){
                     alert("This number is too low!")
-                }       
+                }     
+                 //why
             }
             function reveal(){
                 alert("The number is " +numToGuess +"! The numbers you guessed are: " +guesses)
@@ -49,12 +52,11 @@
     <body>
         <h1>Primedle</h1>
         <label>Enter your prime number guess (number is below 1000)</label><br>
-        <label>Number of guesses remaining: 6</label>
+        <label id="remaining">Number of guesses remaining: 6</label>
         <input type="number" id="numGuess" name="numGuess"><br>
         <button type="button" class="btn btn-outline-danger" onclick=guess()>Guess</button>
         <button type="button" class="btn btn-outline-danger" onclick=reveal()>Reveal answer</button>
-        <label id="showGuesses">Previous guesses:</label>
         
-
+        <label id="showGuesses">Previous guesses:</label>
     </body>
 </html>
