@@ -30,7 +30,23 @@
                 }
                 $("#calcbox").val(primes);
 
-            }          
+            }   
+            function primeFactors() {
+                event.stopPropagation();
+                event.preventDefault();
+                let i = $("#primesTo").val()
+                const factors = [];
+                let divisor = 2;
+                while (i >= 2) {
+                    if (i % divisor == 0) {
+                    factors.push(divisor);
+                    i = i / divisor;
+                    } else {
+                    divisor++;
+                    }
+                }
+                $("#calcbox").val(factors);
+            }    
         </script>
     </head>
 
@@ -40,6 +56,7 @@
         <input type="number" name="primesTo" id="primesTo" ><br>
         <button type="button" class="btn btn-outline-danger" onclick=getPrimeNums()>Get Primes</button>
         <br>
+        <button type="button" class="btn btn-outline-danger" onclick=primeFactors()>Get Prime Factors</button>
         <textarea id="calcbox"></textarea>
     </body>
 
