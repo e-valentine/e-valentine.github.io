@@ -28,7 +28,9 @@
                 event.preventDefault();              
                 let numberGuess = $("#numGuess").val();
                 guesses.push(numberGuess);
-                guessesRem = guessesRem-1
+                if (isPrime(numberGuess)==true){
+                    guessesRem = guessesRem-1
+                }
                 document.getElementById("remaining").innerHTML="Number of guesses remaining: "+guessesRem;
                 document.getElementById("showGuesses").innerHTML="Previous Guesses: "+guesses;
                 if (numberGuess==numToGuess){
@@ -56,7 +58,7 @@
         <input type="number" id="numGuess" name="numGuess"><br>
         <button type="button" class="btn btn-outline-danger" onclick=guess()>Guess</button>
         <button type="button" class="btn btn-outline-danger" onclick=reveal()>Reveal answer</button>
-        
+
         <label id="showGuesses">Previous guesses:</label>
     </body>
 </html>
