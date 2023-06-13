@@ -39,8 +39,13 @@
                 let factor = 2;
                 while (i >= 2) {
                     if (i % factor == 0) {
-                    factors.push(factor);
-                    i = i / factor;
+                        if (factors.includes(factor)){
+                            i = i / factor;
+                        }
+                        else{
+                            factors.push(factor);
+                            i = i / factor;
+                        }
                     } else {
                     factor++;
                     }
