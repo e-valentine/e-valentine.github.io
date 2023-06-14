@@ -2,6 +2,7 @@
 <html>
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <link rel="stylesheet" href="styles.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
         <script>
             const numToGuess = getPrime(2,1001);
@@ -25,7 +26,7 @@
             }
             function guess() {
                 event.stopPropagation();
-                event.preventDefault();              
+                event.preventDefault();          
                 let numberGuess = $("#numGuess").val();
                 guesses.push(numberGuess);
                 if (isPrime(numberGuess)==true){
@@ -33,19 +34,66 @@
                 }
                 document.getElementById("remaining").innerHTML="Number of guesses remaining: "+guessesRem;
                 document.getElementById("showGuesses").innerHTML="Previous Guesses: "+guesses;
+                if(isPrime(numberGuess)==true){
+                    if(guessesRem==5){
+                        document.getElementById("g1input").innerHTML=numberGuess
+                    } else if(guessesRem==4){
+                        document.getElementById("g2input").innerHTML=numberGuess
+                    }else if(guessesRem==3){
+                        document.getElementById("g3input").innerHTML=numberGuess
+                    }else if(guessesRem==2){
+                        document.getElementById("g4input").innerHTML=numberGuess
+                    }else if(guessesRem==1){
+                        document.getElementById("g5input").innerHTML=numberGuess
+                    }else if(guessesRem==0){
+                        document.getElementById("g6input").innerHTML=numberGuess
+                    }
+                }
+                
                 if (numberGuess==numToGuess){
                     alert("This is the correct answer!");                  
                 } else if(isPrime(numberGuess)==false){
                     alert("that isnt a prime number!")
                 } else if(numberGuess>numToGuess){
                     alert("This number is too high!")
+                    if(guessesRem==5){
+                        document.getElementById("gThan1").innerHTML="<"
+                    } else if(guessesRem==4){
+                        document.getElementById("gThan2").innerHTML="<"
+                    }else if(guessesRem==3){
+                        document.getElementById("gThan3").innerHTML="<"
+                    }else if(guessesRem==2){
+                        document.getElementById("gThan4").innerHTML="<"
+                    }else if(guessesRem==1){
+                        document.getElementById("gThan5").innerHTML="<"
+                    }else if(guessesRem==0){
+                        document.getElementById("gThan6").innerHTML="<"
+                    }
                 } else if(numberGuess<numToGuess){
                     alert("This number is too low!")
-                }     
+                    if(guessesRem==5){
+                        document.getElementById("lThan1").innerHTML="<"
+                    } else if(guessesRem==4){
+                        document.getElementById("lThan2").innerHTML="<"
+                    }else if(guessesRem==3){
+                        document.getElementById("lThan3").innerHTML="<"
+                    }else if(guessesRem==2){
+                        document.getElementById("lThan4").innerHTML="<"
+                    }else if(guessesRem==1){
+                        document.getElementById("lThan5").innerHTML="<"
+                    }else if(guessesRem==0){
+                        document.getElementById("lThan6").innerHTML="<"
+                    }
+
+                }  
+                if(guessesRem==0){
+                    reveal()
+                }   
                 
             }
             function reveal(){
-                alert("The number is " +numToGuess +"! The numbers you guessed are: " +guesses)
+                alert("The number is " +numToGuess +"! The numbers you guessed are: " +guesses);
+                window.location.reload();
             }
         </script>
         <title>Prime wordle</title>
@@ -59,6 +107,39 @@
         <button type="button" class="btn btn-outline-danger" onclick=guess()>Guess</button>
         <button type="button" class="btn btn-outline-danger" onclick=reveal()>Reveal answer</button>
 
-        <label id="showGuesses">Previous guesses:</label>
+        <label id="showGuesses">Previous guesses:</label><br/>
+        <table id="primedleTable">
+            <tr id="firstGuess">
+                <th id="gThan1">_</th>
+                <th id="g1input">_</th>
+                <th id="lThan1">_</th>
+            </tr>
+            <tr id="secGuess">
+                <th id="gThan2">_</th>
+                <th id="g2input">_</th>
+                <th id="lThan2">_</th>
+            </tr>     
+            <tr id="thiGuess">
+                <th id="gThan3">_</th>
+                <th id="g3input">_</th>
+                <th id="lThan3">_</th>
+            </tr>
+            <tr id="fouGuess">
+                <th id="gThan4">_</th>
+                <th id="g4input">_</th>
+                <th id="lThan4">_</th>
+            </tr>   
+            <tr id="fifGuess">
+                <th id="gThan5">_</th>
+                <th id="g5input">_</th>
+                <th id="lThan5">_</th>
+            </tr>     
+            <tr id="sixGuess">
+                <th id="gThan6">_</th>
+                <th id="g6input">_</th>
+                <th id="lThan6">_</th>
+            </tr>           
+
+        </table>
     </body>
 </html>
